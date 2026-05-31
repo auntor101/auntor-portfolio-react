@@ -4,10 +4,8 @@ export const hero = {
   name: "Auntor Chakma",
   role: "AI Researcher & Research Assistant",
   summary:
-    "I am a computer science graduate and AI researcher, currently at ELITE Research Lab LLC (Remote). " +
-    "My work so far has focused on computer vision, multimodal federated learning, " +
-    "and network security.",
-  location: "Dhaka, Bangladesh",
+    "I am a computer science graduate and AI researcher, currently at ELITE Research Lab LLC (Remote).",
+  location: "Queens, NY, USA (Remote)",
   degree: "B.Sc. in Computer Science & Engineering, RMSTU",
   email: "auntorchakma@gmail.com",
   github: "https://github.com/auntor101",
