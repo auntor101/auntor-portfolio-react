@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { site } from "../data/site.js";
 
-const LINKS = [["About", "about"], ["Experience", "experience"], ["Research", "research"], ["Projects", "projects"], ["Skills", "skills"], ["Contact", "contact"]];
+const LINKS = [["About", "about"], ["Experience", "experience"], ["Research", "research"], ["Projects", "projects"], ["Leadership", "leadership"], ["Awards", "awards"], ["Skills", "skills"], ["References", "references"], ["Contact", "contact"]];
 
 export default function Nav({ onProject }) {
   const go = useNavigate();

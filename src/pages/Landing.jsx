@@ -4,6 +4,7 @@ import { About, Experience } from "../components/Story.jsx";
 import Research from "../components/Research.jsx";
 import Projects from "../components/Projects.jsx";
 import { Skills, Contact } from "../components/Contact.jsx";
+import { Leadership, Awards, References } from "../components/Record.jsx";
 
 export default function Landing() {
   useEffect(() => {
@@ -19,7 +20,10 @@ export default function Landing() {
       <Experience />
       <Research />
       <Projects />
+      <Leadership />
+      <Awards />
       <Skills />
+      <References />
       <Contact />
     </main>
   );
