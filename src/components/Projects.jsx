@@ -1,41 +1,56 @@
-import { useNavigate } from "react-router-dom";
-import { projects } from "../data/projects.js";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { projects } from "../data/site.js";
+import viz from "../data/viz.json";
+import { useLightbox } from "../lib/Lightbox.jsx";
+
+function Gallery() {
+  const [f, setF] = useState("All");
+  const open = useLightbox();
+  const all = Object.entries(viz.meta), shown = all.filter(([, m]) => f === "All" || m.project === f);
+  return (
+    <div style={{ marginTop: 64 }}>
+      <h3 style={{ marginBottom: 6 }}>Visual gallery: 10 charts across the three projects</h3>
+      <p style={{ color: "var(--nd-mut)", fontSize: 15, marginBottom: 16 }}>Each chart answers one question. Filter by project; click a chart to enlarge.</p>
+      <div className="pills" role="group" aria-label="Filter charts by project">
+        {[["All", `All ${all.length}`], ["A", "A. Malnutrition"], ["B", "B. COVID-19"], ["C", "C. Dengue"]].map(([id, t]) => <button key={id} aria-pressed={f === id} onClick={() => setF(id)}>{t}</button>)}
+      </div>
+      <div className="gcards">
+        {shown.map(([k, m]) => (
+          <article className="gcard" key={k}>
+            <button onClick={() => open({ src: `/img/viz/${k}.webp`, alt: `${m.title}: ${m.what}` })} aria-label={`Enlarge ${m.title}`}>
+              <img src={`/img/viz/${k}.webp`} alt={`${m.title}: ${m.what}`} loading="lazy" />
+            </button>
+            <div className="gbody">
+              <span className={`gtag ${m.project}`}>Project {m.project}</span>
+              <h5>{m.title}</h5>
+              <p><b>What it shows.</b> {m.what}</p>
+              <p><b>Why it matters.</b> {m.why}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Projects() {
-  const navigate = useNavigate();
   return (
-    <section className="section" id="work">
-      <div className="container">
-        <span className="section-label">// Selected work</span>
-        <h2 className="section-title">Four health data case studies</h2>
-        <p style={{ color: "var(--body)", fontSize: 15, lineHeight: 1.7, maxWidth: 680, margin: "-28px 0 40px" }}>
-          Each study takes a real dataset and works through what it shows, in twelve plain-language
-          charts that do not assume a science background. Select any study to open it.
-        </p>
-        <div className="projects-grid">
-          {projects.map(p => {
-            const soft = p.color + "1a";
-            return (
-              <a className="proj-card" key={p.id} onClick={() => navigate(`/project/${p.id}`)}>
-                <span className="proj-badge" style={{ color: p.color, background: soft }}>{p.badge}</span>
-                <h3 className="proj-title">{p.title}</h3>
-                <p className="proj-tagline">{p.tagline}</p>
-                <div className="proj-stats">
-                  {p.stats.map(([v, l], i) => (
-                    <div key={i}>
-                      <div className="proj-stat-val" style={{ color: p.color }}>{v}</div>
-                      <div className="proj-stat-lbl">{l}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="proj-finding">{p.finding}</div>
-                <div className="proj-tags">{p.tags.map((t, i) => <span className="proj-tag" key={i}>{t}</span>)}</div>
-                <div className="proj-cta" style={{ color: p.color }}>Open all 12 charts →</div>
-              </a>
-            );
-          })}
-        </div>
+    <section className="sec wrap rv" id="projects">
+      <span className="kick">Projects</span>
+      <h2>Three open-data projects, each with its own page.</h2>
+      <div className="pcards">
+        {projects.map((p) => (
+          <Link className="pcard" key={p.id} to={`/project/${p.id.toLowerCase()}`}>
+            <span className="pcard-id">Project {p.id}</span>
+            <h3>{p.name}</h3>
+            <b>{p.stat[0]}</b><span className="pcard-stat">{p.stat[1]}</span>
+            <p>{p.objective}</p>
+            <span className="pcard-go">Open dashboard and report →</span>
+          </Link>
+        ))}
       </div>
+      <Gallery />
     </section>
   );
 }

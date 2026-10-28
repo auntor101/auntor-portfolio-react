@@ -1,32 +1,21 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { hero } from "../data/hero.js";
+import { site } from "../data/site.js";
+
+const LINKS = [["About", "about"], ["Experience", "experience"], ["Research", "research"], ["Projects", "projects"], ["Skills", "skills"], ["Contact", "contact"]];
 
 export default function Nav({ onProject }) {
-  const [scrolled, setScrolled] = useState(false);
-  const navigate = useNavigate();
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", fn);
-    fn();
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
+  const go = useNavigate();
+  // anchors live on the landing page, so from a dashboard go home first
+  const jump = (id) => { go("/"); setTimeout(() => document.getElementById(id)?.scrollIntoView(), 50); };
   return (
-    <nav className={scrolled ? "scrolled" : ""}>
-      <div className="nav-inner">
-        <button className="nav-logo" onClick={() => navigate("/")}>
-          <span className="nav-dot" />{hero.name}
-        </button>
+    <nav className="top" aria-label="Main">
+      <div className="nav-in">
+        <button className="nav-name" onClick={() => go("/")}>{site.name}</button>
         {onProject ? (
-          <button className="nav-cta" onClick={() => navigate("/")}>Back to portfolio</button>
+          <button className="nav-back" onClick={() => jump("projects")}>← Back to projects</button>
         ) : (
           <div className="nav-links">
-            <a onClick={() => navigate("/")}>Home</a>
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
-            <a href="#publications">Publications</a>
-            <a href="#experience">Experience</a>
-            <a href={`mailto:${hero.email}`} className="nav-cta">Contact</a>
+            {LINKS.map(([t, id]) => <a key={id} href={`#${id}`} onClick={(e) => { e.preventDefault(); document.getElementById(id)?.scrollIntoView(); }}>{t}</a>)}
           </div>
         )}
       </div>

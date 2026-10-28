@@ -1,0 +1,47 @@
+.pj{padding:44px 0 90px}
+.pj-head h1{font:400 clamp(30px,5.4vw,54px)/1.1 var(--serif);letter-spacing:-.01em;max-width:17em;margin-bottom:16px}
+.pj-head h1 em{font-style:italic;color:var(--nd-a)}
+.pj-lede{max-width:42em;color:var(--nd-mut);margin-bottom:18px}
+.pj-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
+.pj-copy{font:12px var(--mono);border:1px solid var(--nd-line);background:none;border-radius:6px;padding:7px 12px;cursor:pointer;transition:border-color .2s}
+.pj-copy:hover{border-color:var(--nd-a)}
+.pj h2.pj-h{font:400 clamp(24px,3.4vw,32px)/1.2 var(--serif);margin:56px 0 18px}
+.pj-more{display:flex;gap:12px;flex-wrap:wrap;margin-top:56px;padding-top:22px;border-top:1px solid var(--nd-line)}
+
+.stage{--st-fg:#f4f1ff;--st-mut:#a9a4d8;color:var(--st-fg);margin:0 0 22px;padding:22px 22px 14px;border-radius:14px;border:1px solid #2c2766;overflow:hidden;
+  background:radial-gradient(110% 80% at 100% 0%,rgba(138,92,255,.30),transparent 55%),radial-gradient(90% 70% at 0% 100%,rgba(255,45,149,.20),transparent 60%),#0b0920}
+.stage figcaption{display:grid;grid-template-columns:48px 1fr;gap:12px;margin-bottom:6px}
+.st-n{font:500 13px var(--mono);color:#ff2d95;padding-top:5px}
+.stage h2{font:400 clamp(20px,2.6vw,26px)/1.2 var(--serif);color:var(--st-fg)}
+.stage figcaption p{font-size:13.5px;color:var(--st-mut);margin-top:2px}
+.st-read{min-height:22px;font-size:13.5px;color:var(--st-mut);margin:4px 0 2px 60px}
+.st-read b{color:#c6ff00;font-weight:500}
+.st-note{font-size:12.5px;color:var(--st-mut);margin:6px 0 4px 60px;max-width:46em}
+.stage svg{width:100%;height:auto;display:block;overflow:visible}
+.stage svg text{fill:var(--st-mut);font:11px var(--mono)}
+.stage svg text.hi{fill:var(--st-fg)}
+.stage svg text.big{font:400 22px var(--serif);fill:var(--st-fg)}
+.stage .gl{stroke:#2b2766}
+.stage .hit{cursor:crosshair}
+.stage .tog{display:flex;gap:14px;flex-wrap:wrap;margin:2px 0 6px 60px;font-size:13px}
+.stage .tog label{display:flex;gap:6px;align-items:center;cursor:pointer}
+
+/* entrance animation: elements rest in their "before" state until the card scrolls into view */
+.stage .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.5s var(--nd-ease)}
+.stage.go .draw{stroke-dashoffset:0}
+.stage .pop{opacity:0;transform:scale(.2);transform-box:fill-box;transform-origin:center;transition:opacity .5s,transform .7s cubic-bezier(.3,1.5,.5,1)}
+.stage.go .pop{opacity:1;transform:none}
+.stage .fade{opacity:0;transition:opacity .9s .2s}.stage.go .fade{opacity:1}
+.stage .gy,.stage .gx,.stage .gs{transform:scale(1,0);transition:transform .9s var(--nd-ease)}
+.stage .gx{transform:scale(0,1)}.stage .gs{transform:scale(0)}
+.stage.go .gy,.stage.go .gx,.stage.go .gs{transform:none}
+.stage .arc{stroke-dasharray:0 1;transition:stroke-dasharray 1.4s var(--nd-ease)}
+.stage.go .arc{stroke-dasharray:var(--f) 1}
+.stage .bar2{display:grid;grid-template-columns:130px 1fr 70px;gap:10px;align-items:center;font-size:13px;margin:6px 0 6px 60px}
+.stage .bar2 i{display:block;height:12px;border-radius:6px;transform-origin:left;transform:scaleX(0);transition:transform 1s var(--nd-ease)}
+.stage.go .bar2 i{transform:none}
+.stage .bar2 b{text-align:right;font-weight:500;font-variant-numeric:tabular-nums}
+
+@media(max-width:700px){.st-read,.st-note,.stage .tog,.stage .bar2{margin-left:0}.stage figcaption{grid-template-columns:34px 1fr}.stage{padding:18px 14px 10px}}
+@media(prefers-reduced-motion:reduce){
+  .stage .draw{stroke-dashoffset:0}.stage .pop,.stage .fade{opacity:1;transform:none}.stage .gy,.stage .gx,.stage .gs,.stage .bar2 i{transform:none}.stage .arc{stroke-dasharray:var(--f) 1}}
