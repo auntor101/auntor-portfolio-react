@@ -16,8 +16,9 @@ export function Experience() {
   return (
     <section className="sec wrap rv" id="experience">
       <h2>Experience</h2>
-      {experience.map((j) => (
+      {experience.map((j, i) => (
         <article className="job" key={j.role}>
+          {j.edu && !experience[i - 1].edu && <h3 className="edu-h">Education</h3>}
           <div className="job-when">{j.when}</div>
           <div>
             <h3>{j.role}</h3>

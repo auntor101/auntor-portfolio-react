@@ -6,7 +6,7 @@ const LINKS = [["About", "about"], ["Experience", "experience"], ["Research", "r
 
 export default function Nav({ onProject }) {
   const go = useNavigate();
-  const [dark, setDark] = useState(() => document.documentElement.dataset.theme === "dark");
+  const [dark, setDark] = useState(() => document.documentElement.dataset.theme !== "light");
   const toggle = () => {
     const next = !dark;
     setDark(next);

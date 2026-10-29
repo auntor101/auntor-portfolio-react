@@ -25,10 +25,11 @@ export const experience = [
   { role: "Management Information System Officer", when: "Jul 2026 – Present", org: "ASHIKA Development Associates · Mother and Child Benefit Programme (funded by the World Food Programme)",
     points: ["Collect, clean and validate field data, resolving missing, duplicate and inconsistent records before reporting.", "Track nutrition and benefit-delivery indicators for mothers and children, and present progress to management and WFP through regular reports, dashboards and charts."] },
   { role: "Researcher and Research Assistant", when: "Aug 2025 – Sep 2026", org: "ELITE Research Lab LLC, Queens, NY (remote)",
-    points: ["Led health-AI research on skin-disease classification with privacy-preserving federated learning and differential privacy, explainable AI for medical imaging, and a diabetic retinopathy severity ensemble with diffusion-based augmentation.", "Reviewed the literature on multimodal federated learning in healthcare; the review is accepted in Frontiers in Digital Health.", "Mentored and advised two interns on model design and training and on research writing in a biomedical signal processing project (respiratory sound classification); the advising is ongoing."] },
-  { role: "Research Assistant, Department of CSE", when: "Dec 2024 – Jun 2025", org: "Rangamati Science and Technology University",
+    points: ["Led health-AI research on skin-disease classification with federated learning and differential privacy, explainable AI for medical imaging, and a diabetic retinopathy ensemble with diffusion-based augmentation (91.63% accuracy, AUC 0.9920).", "First-authored a systematic mini review of multimodal federated learning in healthcare (accepted 29 Sep 2026, Frontiers in Digital Health).", "Advised two interns on RespCCT, a compact convolutional transformer for multi-source respiratory sound classification, built to run on portable IoMT devices with limited computing resources. I continue to advise the project."] },
+  { role: "Research Assistant, Department of CSE", when: "Dec 2024 – Jun 2025", org: "Rangamati Science and Technology University · Supervisor: Md Mynoddin",
     points: ["Built a real-time network traffic dataset from Bangladesh telecommunications and trained CNN intrusion detectors, working with imbalanced network traffic data from collection to evaluation."] },
-  { role: "B.Sc. in Computer Science and Engineering", when: "2025", org: "Rangamati Science and Technology University", points: [] },
+  { edu: true, role: "B.Sc. (Engineering) in Computer Science and Engineering", when: "Sep 2018 – Feb 2025", org: "Rangamati Science and Technology University · CGPA 3.50/4.00", points: [] },
+  { edu: true, role: "Higher Secondary Certificate", when: "2015 – 2017", org: "Notre Dame College, Dhaka · GPA 5.00/5.00", points: [] },
 ];
 
 export const publications = [
@@ -37,8 +38,8 @@ export const publications = [
     ga: "/img/ga-dr-ensemble.webp", alt: "Graphical abstract of the diabetic retinopathy ensemble" },
   { status: "Under review", tone: "warn", title: "Privacy-Preserving Skin Disease Classification Using Federated Learning with Formal Differential Privacy", venue: "Journal of Dermatological Science", metrics: "Impact factor 4.6 · CiteScore 6.9 · Q1", href: "https://www.sciencedirect.com/journal/journal-of-dermatological-science",
     text: "The work trains a skin-disease classifier across sites with federated learning, so patient images stay where they were collected. It adds formal differential privacy (DP) to give a measurable privacy guarantee on the shared model updates." },
-  { status: "Ongoing · Advisor", tone: "info", title: "Compact and Interpretable: Explainable Time–Frequency Transformers for Multi-Source Respiratory Sound Classification",
-    text: "This biomedical signal processing project classifies respiratory sounds recorded from multiple sources with compact, interpretable time–frequency transformers. I mentored and advised two interns on model design and training and on research writing and paper structure." },
+  { status: "Ongoing · Advisor", tone: "info", title: "RespCCT: a compact convolutional transformer for multi-source respiratory sound classification",
+    text: "This biomedical signal processing project classifies respiratory sounds recorded from multiple sources. The model is a compact convolutional transformer designed to run on portable IoMT devices with limited computing resources. I mentored and advised two interns on model design and training and on research writing and paper structure." },
   { status: "Accepted", tone: "ok", date: "29 Sep 2026", title: "Multimodal Federated Learning with Privacy-Preserving Mechanisms in Healthcare: A Mini Review of Convergence, Challenges, and Future Directions", venue: "Frontiers in Digital Health", metrics: "Impact factor 5.2 · CiteScore 6.8 · Q1",
     text: "The review surveys multimodal federated learning in healthcare and finds federated training stable at real scale. Among the empirical studies, only 1 of 8 (12.5%) applied a formal privacy mechanism to model updates, and none gave different data types their own protection.",
     ga: "/img/ga-mfl-review.webp", alt: "Graphical abstract of the multimodal federated learning review" },
@@ -50,9 +51,9 @@ export const mentoring = "I mentored and advised two interns in a biomedical sig
 
 export const skills = [
   ["Healthcare AI", "federated learning, explainable AI (Grad-CAM, SHAP, LIME), vision-language models, medical imaging, biomedical signal processing, public health data, AI safety"],
-  ["Data analysis", "Python (pandas, NumPy, Matplotlib, Seaborn, Plotly), SQL (MySQL, PostgreSQL), data cleaning and validation"],
+  ["Data analysis", "Python (pandas, NumPy, Matplotlib, Seaborn, Plotly), SQL (MySQL, PostgreSQL), Stata, data cleaning and validation"],
   ["Dashboards and reporting", "Power BI, Excel, Plotly Dash"],
-  ["Machine learning", "PyTorch, TensorFlow, scikit-learn"],
+  ["Machine learning", "deep learning, model training and evaluation, PyTorch, TensorFlow, scikit-learn"],
   ["Research workflow", "Git and GitHub, Linux, LaTeX, technical writing"],
 ];
 
