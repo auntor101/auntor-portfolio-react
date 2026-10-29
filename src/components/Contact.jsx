@@ -3,8 +3,7 @@ import { site, skills } from "../data/site.js";
 export function Skills() {
   return (
     <section className="sec wrap rv" id="skills">
-      <span className="kick">Skills</span>
-      <h2>Tools I use.</h2>
+      <h2>Skills</h2>
       {skills.map(([k, v]) => <div className="skill" key={k}><b>{k}</b><span>{v}</span></div>)}
     </section>
   );
@@ -14,8 +13,7 @@ export function Contact() {
   const email = site.email.join("@"); // assembled here, not in the markup
   return (
     <section className="sec wrap rv" id="contact">
-      <span className="kick">Contact</span>
-      <h2>Get in touch.</h2>
+      <h2>Contact</h2>
       <div className="contact">
         <div>
           <a href={`mailto:${email}`}>{email}</a>

@@ -20,7 +20,7 @@ function Clock() {
   const sh = R.month_share, mx = Math.max(...Object.values(sh)), top3 = sh[9] + sh[10] + sh[11];
   return (
     <Stage n={1} title={`September to November holds ${top3.toFixed(0)}% of all cases`} sub="Share of reported cases by calendar month, 2020 to 2025"
-      read={h ? <><b>{MONTHS[h - 1]}</b>: {sh[h]}% of all cases</> : "Hover a month."}>
+      read={h ? <><b>{MONTHS[h - 1]}</b>: {sh[h]}% of all cases</> : ""}>
       <svg viewBox="0 0 400 400" style={{ maxWidth: 440, margin: "0 auto" }} role="img" aria-label="Radial bar chart of dengue cases by calendar month">
         {[0.25, 0.5, 1].map((f) => <circle key={f} cx="200" cy="200" r={46 + f * 100} fill="none" className="gl" />)}
         {MONTHS.map((m, i) => {
@@ -46,7 +46,7 @@ function Timeline() {
   const area = path(M.cases.map((v, i) => [X(i), Y(v)])) + `L${X(n - 1)},240L${X(0)},240Z`;
   const onMove = (e) => { const r = e.currentTarget.getBoundingClientRect(); setH(Math.max(0, Math.min(n - 1, Math.round((((e.clientX - r.left) / r.width) * 800 - 56) / 700 * (n - 1))))); };
   return (
-    <Stage n={2} title={`One huge season: ${nf(mx)} cases in a single month`} sub="National monthly cases (filled) and mean temperature (dashed), 2020 to 2025"
+    <Stage n={2} title={`Cases peaked at ${nf(mx)} in ${M.dates[M.cases.indexOf(mx)].slice(0, 7)}`} sub="National monthly cases (filled) and mean temperature (dashed), 2020 to 2025"
       read={h != null ? <><b>{M.dates[h].slice(0, 7)}</b>: {nf(M.cases[h])} cases, {M.temp[h]}°C, humidity {Math.round(M.hum[h] * 100)}%</> : `Peak ${nf(mx)} cases in ${M.dates[M.cases.indexOf(mx)].slice(0, 7)}.`}
       note="Cases follow temperature about three months later (ρ = 0.65); both are strongly seasonal, so this is an association, not proof of cause.">
       <svg viewBox="0 0 800 270" role="img" aria-label="Monthly dengue cases and temperature" onPointerMove={onMove} onPointerLeave={() => setH(null)}>
@@ -69,8 +69,8 @@ function Burden() {
   const [h, setH] = useState(null);
   const X = (v) => 70 + (v / 850) * 690, Y = (v) => 240 - (v / 0.75) * 215;
   return (
-    <Stage n={3} title="Many cases and many deaths are different problems" sub="Cases per 100,000 against case fatality by division; bubble size is deaths"
-      read={h ? <><b>{h[0]}</b>: {h[1].inc100k} cases per 100,000, fatality {h[1].cfr}%, {nf(h[1].deaths)} deaths</> : "Hover a bubble."}
+    <Stage n={3} title="Barishal and Dhaka have the highest incidence; Dhaka has the highest fatality" sub="Cases per 100,000 against case fatality by division; bubble size is deaths"
+      read={h ? <><b>{h[0]}</b>: {h[1].inc100k} cases per 100,000, fatality {h[1].cfr}%, {nf(h[1].deaths)} deaths</> : ""}
       note="Dhaka’s deaths may include severe patients referred from other divisions, so its high fatality does not prove the disease is more lethal there.">
       <svg viewBox="0 0 800 290" role="img" aria-label="Bubble chart of dengue incidence against fatality by division">
         <Glow id="c3" />
@@ -100,8 +100,8 @@ function RiskMap() {
   const [h, setH] = useState(null);
   const ys = Object.keys(R.yearly);
   return (
-    <Stage n={4} title="Dhaka and Barishal run hot every year; Sylhet and Rangpur stay cold" sub="Each division’s incidence relative to the national rate (1.0 = national average)"
-      read={h ? <><b>{h[0]} {h[1]}</b>: {h[2]}× the national rate</> : "Hover a cell. Pink to amber is above the national rate, cyan is below."}>
+    <Stage n={4} title="Only Dhaka and Barishal are above the national rate: Dhaka in all six years, Barishal in five" sub="Each division’s incidence relative to the national rate (1.0 = national average)"
+      read={h ? <><b>{h[0]} {h[1]}</b>: {h[2]}× the national rate</> : "Pink to amber is above the national rate; cyan is below."}>
       <svg viewBox="0 0 800 330" role="img" aria-label="Heatmap of relative dengue risk by division and year">
         {ys.map((y, c) => <text key={y} x={170 + c * 100 + 46} y="16" textAnchor="middle" className="hi">{y}</text>)}
         {DIV.map(([name], r) => (

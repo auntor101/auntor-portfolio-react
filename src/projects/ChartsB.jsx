@@ -12,7 +12,7 @@ function Calendar() {
   const cells = W.dates.map((d, i) => { const t = new Date(UTC(d)), y = t.getUTCFullYear(); return { d, y, c: Math.floor((t - Date.UTC(y, 0, 1)) / 864e5 / 7), v: W.cases[i] }; });
   return (
     <Stage n={1} title="Waves do not follow a fixed season" sub="Weekly reported cases laid out by year and week of the year; brighter is busier"
-      read={h ? <>Week of <b>{h.d}</b>: <b>{nf(h.v)}</b> reported cases</> : "Hover a cell to read a week."}>
+      read={h ? <>Week of <b>{h.d}</b>: <b>{nf(h.v)}</b> reported cases</> : ""}>
       <svg viewBox="0 0 800 214" role="img" aria-label="Calendar heatmap of weekly COVID-19 cases by year and week">
         {years.map((y, r) => <text key={y} x="0" y={30 + r * (ch + 6)} className="hi">{y}</text>)}
         {cells.map((c) => (
@@ -34,7 +34,7 @@ function Waves() {
   const cols = [C.cyan, C.violet, C.pink, C.coral, C.amber, C.lime];
   return (
     <Stage n={2} title={`${R.waves.length} waves, the biggest two near 100,000 cases a week`} sub="Start to end of each detected wave; the bubble marks the peak and its size is the peak week’s cases"
-      read={h ? <><b>Wave {h.id}</b>: peak {nf(h.peak_cases)} on {h.peak}, {nf(h.cases)} cases over {h.weeks} weeks, doubling in {h.doubling_wk} weeks</> : "Hover a wave."}>
+      read={h ? <><b>Wave {h.id}</b>: peak {nf(h.peak_cases)} on {h.peak}, {nf(h.cases)} cases over {h.weeks} weeks, doubling in {h.doubling_wk} weeks</> : ""}>
       <svg viewBox="0 0 800 300" role="img" aria-label="Timeline of six COVID-19 waves with peak sizes">
         <Glow id="g2" />
         {[2020, 2021, 2022, 2023].map((y) => <g key={y}><line className="gl" x1={X(`${y}-01-01`) < 70 ? 70 : X(`${y}-01-01`)} x2={X(`${y}-01-01`) < 70 ? 70 : X(`${y}-01-01`)} y1="10" y2="270" /><text x={Math.max(X(`${y}-01-01`), 70) + 4} y="290">{y}</text></g>)}
@@ -59,23 +59,23 @@ function Waves() {
 function Region() {
   const [h, setH] = useState(null);
   const cols = [C.pink, C.cyan, C.amber, C.violet, C.lime, C.coral, "#3dffb5", "#ff8ad8"];
-  const mx = Math.max(...R.compare.map((c) => c.cases_pm)) * 1.12, my = Math.max(...R.compare.map((c) => c.deaths_pm)) * 1.18;
-  const X = (v) => 70 + (v / mx) * 700, Y = (v) => 250 - (v / my) * 225;
+  const my = Math.max(...R.compare.map((c) => c.deaths_pm)) * 1.18, LO = Math.log10(3000), HI = Math.log10(450000);
+  const X = (v) => 70 + ((Math.log10(v) - LO) / (HI - LO)) * 700, Y = (v) => 250 - (v / my) * 225;
   return (
-    <Stage n={3} title="Bangladesh sits below most of its neighbours per million people" sub="Cumulative cases and deaths per million; bubble size is population"
-      read={h ? <><b>{h.country}</b>: {nf(h.cases_pm)} cases and {nf(h.deaths_pm)} deaths per million, fatality {h.cfr}%</> : "Hover a bubble."}
+    <Stage n={3} title="Bangladesh sits below most of its neighbours per million people" sub="Cumulative cases (log scale) and deaths per million; bubble size is population"
+      read={h ? <><b>{h.country}</b>: {nf(h.cases_pm)} cases and {nf(h.deaths_pm)} deaths per million, fatality {h.cfr}%</> : ""}
       note="Testing and reporting differ between countries, so this is context, not a ranking of how well each coped.">
       <svg viewBox="0 0 800 300" role="img" aria-label="Bubble chart of cases and deaths per million for South Asian countries">
         <Glow id="g3b" />
-        {[0, 10000, 20000, 30000].map((v) => <g key={v}><line className="gl" x1={X(v)} x2={X(v)} y1="25" y2="250" /><text x={X(v)} y="272" textAnchor="middle">{v / 1000}k</text></g>)}
+        {[5000, 10000, 50000, 100000, 300000].map((v) => <g key={v}><line className="gl" x1={X(v)} x2={X(v)} y1="25" y2="250" /><text x={X(v)} y="272" textAnchor="middle">{v / 1000}k</text></g>)}
         {[0, 200, 400, 600].filter((v) => v < my).map((v) => <g key={v}><line className="gl" x1="70" x2="770" y1={Y(v)} y2={Y(v)} /><text x="62" y={Y(v) + 4} textAnchor="end">{v}</text></g>)}
         <text x="420" y="294" textAnchor="middle">cases per million</text><text x="8" y="16">deaths per million</text>
-        {R.compare.map((c, i) => {
-          const r = 7 + Math.sqrt(c.population / 1e6) * 0.95;
+        {[...R.compare].sort((a, b) => b.population - a.population).map((c, i) => {
+          const r = 7 + Math.sqrt(c.population / 1e6) * 0.95, below = c.country === "Pakistan" || c.country === "Nepal";
           return (
             <g key={c.country} className="hit" onMouseEnter={() => setH(c)} onMouseLeave={() => setH(null)}>
-              <circle className="pop" cx={X(c.cases_pm)} cy={Y(c.deaths_pm)} r={r} fill={cols[i % 8]} opacity={c.country === "Bangladesh" ? 0.95 : 0.6} filter="url(#g3b)" style={{ transitionDelay: `${i * 0.1}s` }} />
-              <text x={X(c.cases_pm)} y={Y(c.deaths_pm) - r - 5} textAnchor="middle" className="hi">{c.country}</text>
+              <circle className="pop" cx={X(c.cases_pm)} cy={Y(c.deaths_pm)} r={r} fill={c.country === "Bangladesh" ? cols[0] : cols[1 + (i % 7)]} opacity={c.country === "Bangladesh" ? 0.95 : 0.6} filter="url(#g3b)" style={{ transitionDelay: `${i * 0.1}s` }} />
+              <text x={X(c.cases_pm)} y={below ? Y(c.deaths_pm) + r + 14 : Y(c.deaths_pm) - r - 5} textAnchor="middle" className="hi">{c.country}</text>
             </g>
           );
         })}

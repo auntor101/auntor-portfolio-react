@@ -11,7 +11,7 @@ function Ladder() {
   const X = (v) => 160 + (v / 70) * 610;
   return (
     <Stage n={1} title={`Stunting fell ${R.decline.stunting_1990_2019_pp} points and underweight ${R.decline.underweight_1990_2019_pp}`} sub="Start and end prevalence among children under 5, from the first full survey year to 2019"
-      read={h ? <><b>{h[0]}</b>: {h[2][h[1]]}% in {h[1]} to {h[2][2019]}% in 2019, down {(h[2][h[1]] - h[2][2019]).toFixed(1)} points</> : "Hover a row for the change."}>
+      read={h ? <><b>{h[0]}</b>: {h[2][h[1]]}% in {h[1]} to {h[2][2019]}% in 2019, down {(h[2][h[1]] - h[2][2019]).toFixed(1)} points</> : ""}>
       <svg viewBox="0 0 800 240" role="img" aria-label="Start and end prevalence of stunting and underweight">
         <Glow id="g1" />
         {[0, 20, 40, 60].map((v) => <g key={v}><line className="gl" x1={X(v)} x2={X(v)} y1="20" y2="215" /><text x={X(v)} y="232" textAnchor="middle">{v}%</text></g>)}
@@ -40,7 +40,7 @@ function Fan() {
   const v25 = ys.map((y) => F[y].line[i25]), lo = Math.min(...v25), hi = Math.max(...v25);
   const X = (y) => 50 + ((y - 1986) / 44) * 730, Y = (v) => 270 - (v / 100) * 250;
   return (
-    <Stage n={2} title={`The 2025 trend value moves between ${lo}% and ${hi}%`} sub="26 trend lines, one for each fit start year (1986 to 2011), projected to 2030"
+    <Stage n={2} title={`The 2025 trend value moves between ${lo.toFixed(1)}% and ${hi.toFixed(1)}%`} sub="26 trend lines, one for each fit start year (1986 to 2011), projected to 2030"
       note={`One line is a fragile basis for planning, so use the range. Amber dashes: the ${R.reference.level_2025}% reference level, 40% below the 2012 level.`}>
       <svg viewBox="0 0 800 300" role="img" aria-label="Fan of 26 stunting trend lines projected to 2030 with observed survey values">
         <rect x={X(2019.5)} y="20" width={X(2030) - X(2019.5)} height="250" fill="#8a5cff" opacity=".12" />
@@ -61,8 +61,8 @@ function Forest() {
   const rows = [["Stunting, main fit", R.main.stunting, C.pink], ["Stunting, Theil–Sen", R.theil_sen_aarr, C.cyan], ["Underweight, main fit", R.main.underweight, C.amber], ["Stunting, 1990–2007", R.periods["1990-2007"], C.violet], ["Stunting, 2007–2019", R.periods["2007-2019"], C.lime]];
   const X = (v) => 210 + ((v - 1.5) / 4) * 560;
   return (
-    <Stage n={3} title="About 3% less every year, whichever way it is measured" sub="Average annual reduction with 95% intervals, overall and by period"
-      read={h ? <><b>{h[0]}</b>: {h[1].aarr}% a year (95% CI {h[1].lo} to {h[1].hi})</> : "Hover a row for the interval."}
+    <Stage n={3} title={`Annual reduction was between ${Math.min(...rows.map((r) => r[1].aarr))}% and ${Math.max(...rows.map((r) => r[1].aarr))}% in every fit`} sub="Average annual reduction with 95% intervals, overall and by period"
+      read={h ? <><b>{h[0]}</b>: {h[1].aarr}% a year (95% CI {h[1].lo} to {h[1].hi})</> : ""}
       note="The later period looks faster, but its interval is wide because it rests on 6 survey points.">
       <svg viewBox="0 0 800 270" role="img" aria-label="Forest plot of average annual reduction">
         <Glow id="g3" />
@@ -89,7 +89,7 @@ function Forest() {
 function Backtest() {
   const X = (v) => 130 + ((v - 26) / 18) * 640;
   return (
-    <Stage n={4} title="The old trend ran high every time, so it understates recent progress" sub="Predicted against observed stunting for the three held-out survey years"
+    <Stage n={4} title="The 1990–2013 trend over-predicted every held-out year" sub="Predicted against observed stunting for the three held-out survey years"
       note={`Every observed value fell inside the 95% prediction interval. Violet bar: interval · pink: predicted · lime: observed.`}>
       <svg viewBox="0 0 800 230" role="img" aria-label="Backtest of predicted versus observed stunting for 2014, 2018 and 2019">
         <Glow id="g4" />

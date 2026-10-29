@@ -1,7 +1,8 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--nd-bg:#f3eee4;--nd-fg:#1d1b17;--nd-mut:#6b6558;--nd-line:#d9d1c0;--nd-card:#faf6ee;--nd-a:#0b6b4f;--nd-b:#b4530a;--nd-c:#2f55c7;
   --nd-ease:cubic-bezier(.2,.7,.2,1);--serif:'Newsreader',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace}
-@media(prefers-color-scheme:dark){:root{--nd-bg:#16140f;--nd-fg:#ece6d8;--nd-mut:#a39b88;--nd-line:#3a352a;--nd-card:#1e1b14;--nd-a:#4cc9a0;--nd-b:#f0a050;--nd-c:#8aa8ff}}
+:root{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark;--nd-bg:#16140f;--nd-fg:#ece6d8;--nd-mut:#a39b88;--nd-line:#3a352a;--nd-card:#1e1b14;--nd-a:#4cc9a0;--nd-b:#f0a050;--nd-c:#8aa8ff}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{background:var(--nd-bg);color:var(--nd-fg);font:16px/1.65 'IBM Plex Sans',system-ui,sans-serif;overflow-x:hidden}
 a{color:var(--nd-a);text-underline-offset:3px}
@@ -86,7 +87,6 @@ nav.top{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--nd-
 .fig img{width:100%;display:block}.fig figcaption{font-size:12.5px;color:var(--nd-mut);margin-top:6px}
 .dashcta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border:1px solid var(--nd-a);border-radius:4px;padding:16px 20px;margin-top:28px;background:var(--nd-card)}
 .dashcta b{font:400 20px var(--serif)}.dashcta span{display:block;font-size:13px;color:var(--nd-mut)}
-.repro{font:12px var(--mono);color:var(--nd-mut);margin-top:16px;overflow-wrap:anywhere}
 
 .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .pills button{border:1px solid var(--nd-line);background:none;border-radius:999px;padding:5px 14px;font-size:13px;cursor:pointer;transition:background .2s,color .2s}
@@ -143,3 +143,10 @@ footer{margin-top:80px;padding:22px 0 40px;border-top:1px solid var(--nd-line);f
 .ref h3 a{text-decoration:none;color:inherit}.ref h3 a:hover{color:var(--nd-a)}
 .ref-role{font-size:14.5px;margin:6px 0}.ref-org{font-size:13.5px;color:var(--nd-mut)}
 @media(max-width:700px){.lead,.award{grid-template-columns:1fr}}
+
+.pub-metrics{display:inline-block;margin-left:12px;font:12px var(--mono);color:var(--nd-fg)}
+.pub-foot{font-size:12.5px;color:var(--nd-mut);margin-top:18px;max-width:46em}
+
+.theme{font:12px var(--mono);border:1px solid var(--nd-line);background:none;border-radius:6px;padding:6px 12px;cursor:pointer;white-space:nowrap;transition:border-color .2s}
+.theme:hover{border-color:var(--nd-a)}
+.nav-right{display:flex;align-items:center;gap:14px;min-width:0}

@@ -11,7 +11,7 @@ function Gallery() {
   return (
     <div style={{ marginTop: 64 }}>
       <h3 style={{ marginBottom: 6 }}>Visual gallery: 10 charts across the three projects</h3>
-      <p style={{ color: "var(--nd-mut)", fontSize: 15, marginBottom: 16 }}>Each chart answers one question. Filter by project; click a chart to enlarge.</p>
+      <p style={{ color: "var(--nd-mut)", fontSize: 15, marginBottom: 16 }}>Each chart answers one question.</p>
       <div className="pills" role="group" aria-label="Filter charts by project">
         {[["All", `All ${all.length}`], ["A", "A. Malnutrition"], ["B", "B. COVID-19"], ["C", "C. Dengue"]].map(([id, t]) => <button key={id} aria-pressed={f === id} onClick={() => setF(id)}>{t}</button>)}
       </div>
@@ -37,8 +37,7 @@ function Gallery() {
 export default function Projects() {
   return (
     <section className="sec wrap rv" id="projects">
-      <span className="kick">Projects</span>
-      <h2>Three open-data projects, each with its own page.</h2>
+      <h2>Projects</h2>
       <div className="pcards">
         {projects.map((p) => (
           <Link className="pcard" key={p.id} to={`/project/${p.id.toLowerCase()}`}>

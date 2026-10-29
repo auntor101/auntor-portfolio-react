@@ -5,8 +5,7 @@ export function Leadership() {
   const open = useLightbox();
   return (
     <section className="sec wrap rv" id="leadership">
-      <span className="kick">Leadership</span>
-      <h2>Programmes I have organised and helped run.</h2>
+      <h2>Leadership</h2>
       {leadership.map((l) => (
         <article className="lead" key={l.title}>
           <div className="job-when">{l.when}</div>
@@ -41,8 +40,7 @@ export function Leadership() {
 export function Awards() {
   return (
     <section className="sec wrap rv" id="awards">
-      <span className="kick">Awards</span>
-      <h2>Awards and scholarships.</h2>
+      <h2>Awards</h2>
       {awards.map((a) => (
         <div className="award" key={a.name}>
           <span className="job-when">{a.year}</span>
@@ -60,8 +58,7 @@ export function Awards() {
 export function References() {
   return (
     <section className="sec wrap rv" id="references">
-      <span className="kick">References</span>
-      <h2>Mentors and references.</h2>
+      <h2>References</h2>
       <div className="refs">
         {references.map((r) => {
           const mail = r.email.join("@"); // assembled here, not in the markup

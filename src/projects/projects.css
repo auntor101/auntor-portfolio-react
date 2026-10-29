@@ -2,9 +2,6 @@
 .pj-head h1{font:400 clamp(30px,5.4vw,54px)/1.1 var(--serif);letter-spacing:-.01em;max-width:17em;margin-bottom:16px}
 .pj-head h1 em{font-style:italic;color:var(--nd-a)}
 .pj-lede{max-width:42em;color:var(--nd-mut);margin-bottom:18px}
-.pj-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
-.pj-copy{font:12px var(--mono);border:1px solid var(--nd-line);background:none;border-radius:6px;padding:7px 12px;cursor:pointer;transition:border-color .2s}
-.pj-copy:hover{border-color:var(--nd-a)}
 .pj h2.pj-h{font:400 clamp(24px,3.4vw,32px)/1.2 var(--serif);margin:56px 0 18px}
 .pj-more{display:flex;gap:12px;flex-wrap:wrap;margin-top:56px;padding-top:22px;border-top:1px solid var(--nd-line)}
 

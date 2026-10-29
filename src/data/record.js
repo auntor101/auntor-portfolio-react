@@ -1,5 +1,4 @@
-// Leadership, awards and references, from auntorchakma.github.io (leadership, awards and references pages).
-// Photos live in public/img/lead; every number is copied from the source page.
+// Leadership, awards and references. Photos live in public/img/lead.
 const IMG = (f) => `/img/lead/${f}.webp`;
 
 export const leadership = [
@@ -16,15 +15,15 @@ export const leadership = [
   { title: "Technical session coordinator and volunteer", when: "16–18 May 2025", org: "International Bioscience Conference and Carnival 2025 (ICBC) · Rangamati Science and Technology University",
     text: "Technical sessions over three days needed a fixed schedule that presenters and moderators kept to. I coordinated the sessions and managed the presentation schedule, kept presenters and moderators on time myself, and helped at the registration desk and delegate check-in.",
     result: ["3", "technical sessions coordinated"],
-    shots: [[IMG("icbc-2025-team"), "ICBC 2025 organizers and volunteers in front of the conference banner"]], caption: "ICBC Volunteer 2025 team, Rangamati Science and Technology University, 16–18 May 2025.",
+    shots: [[IMG("icbc-2025-team"), "ICBC 2025 organisers and volunteers in front of the conference banner"]], caption: "ICBC Volunteer 2025 team, Rangamati Science and Technology University, 16–18 May 2025.",
     links: [["ICBC post", "https://www.facebook.com/share/p/18PXWp41YY/"]], proofs: [["ICBC certificate", "/docs/icbc-2025-certificate.pdf"]] },
-  { title: "AI seminar organizer and host", when: "2024", org: "Independent initiative · Schools and colleges of Rangamati Hill District",
-    text: "Students at schools and colleges across the district had little exposure to how AI systems work and where they fail. I organized the series myself, with no institutional sponsor, and ran it with five fellow RMSTU students. Sessions covered AI applications, ethical considerations and safety practices. Venues included Moanoghar Residential School, Moanoghar Pre-Cadet School, Rangamati Government College, Rangamati Government Mohila College and Rani Dayamoyee High School.",
+  { title: "AI seminar organiser and host", when: "2024", org: "Independent initiative · Schools and colleges of Rangamati Hill District",
+    text: "Students at schools and colleges across the district had little exposure to how AI systems work and where they fail. I organised the series myself, with no institutional sponsor, and ran it with five fellow RMSTU students. Sessions covered AI applications, ethical considerations and safety practices. Venues included Moanoghar Residential School, Moanoghar Pre-Cadet School, Rangamati Government College, Rangamati Government Mohila College and Rani Dayamoyee High School.",
     result: ["300+", "students across six schools and colleges"] },
   { title: "Winter relief distribution", when: "Winters 2023 and 2024", org: "RMSTU Indigenous Students’ Family · Baghaichhari and Sajek, Rangamati Hill District",
     text: "Indigenous families in rural parts of the district needed books, warm clothing and study materials in winter. As Welfare Secretary, I helped collect funds and clean winter clothing, distributed supplies, collected data on affected families and coordinated logistics. Over two winters we collected around BDT 45,000, and the clothing reached families in three villages in Baghaichhari and Sajek.",
     result: ["61 families", "received clothing, and 52 students received study materials"], links: [["Facebook page", "https://www.facebook.com/RMSTUISU"]] },
-  { title: "Indigenous food habits and climate change awareness programme", when: "11–13 June 2026", org: "Self-organized, with support from ASHIKA Development Associates · Kaptai (Rangamati) and Bandarban Sadar (Bandarban)",
+  { title: "Indigenous food habits and climate change awareness programme", when: "11–13 June 2026", org: "Self-organised, with support from ASHIKA Development Associates · Kaptai (Rangamati) and Bandarban Sadar (Bandarban)",
     text: "Mothers and adolescent girls (kishories) in the Chittagong Hill Tracts had few structured sessions on how local food habits relate to nutrition and to climate change. I assembled and led a group of 15 volunteers. We held meetings and awareness sessions with them, including at UNICEF-supported Para Centres and a monthly cluster meeting of Para Centre workers. Sessions covered what indigenous food habits offer for nutrition, and how climate change affects food and jhum cultivation. Printed material was produced from the sessions.",
     result: ["48", "mothers and kishories reached"],
     shots: [[IMG("awareness-cluster-meeting-chandraghona"), "Monthly cluster meeting of Para Centre workers under a UNICEF and CHT Development Board banner"], [IMG("awareness-para-centre-children"), "Mothers and children inside a Para Centre with UNICEF nutrition posters"], [IMG("awareness-para-centre-rkap118"), "Para Centre workers outside Para Centre RKAP-118, Sapchhari Tripurachhari"], [IMG("awareness-leaflet-mother"), "Explaining a printed leaflet to a mother holding her child"], [IMG("awareness-farming-families"), "Talking with a farming family as they bundle harvested greens"]],

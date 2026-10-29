@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { projects } from "../data/site.js";
 import N from "../data/nutrition.json";
@@ -45,26 +45,22 @@ function Report({ p }) {
           </figure>
         ))}
       </div>
-      <p className="repro">Reproduce: python {p.script}</p>
     </div>
   );
 }
 
 export default function ProjectPage() {
   const id = (useParams().id || "").toUpperCase();
-  const [copied, setCopied] = useState(false);
-  useEffect(() => { window.scrollTo(0, 0); setCopied(false); }, [id]);
+  useEffect(() => { window.scrollTo(0, 0); }, [id]);
   const p = projects.find((x) => x.id === id);
   if (!p) return <Navigate to="/" replace />;
   const Charts = CHARTS[id];
-  const copy = () => { navigator.clipboard?.writeText(location.href).then(() => setCopied(true)).catch(() => {}); };
   return (
     <main className="wrap pj" id="main">
       <header className="pj-head">
         <span className="kick">Project {id} · {p.name}</span>
         <h1>{HEAD[id].h}</h1>
         <p className="pj-lede">{HEAD[id].lede}</p>
-        <div className="pj-tools"><button className="pj-copy" onClick={copy}>{copied ? "Link copied" : "Copy direct link"}</button></div>
       </header>
       <Charts />
       <h2 className="pj-h">The full report</h2>
